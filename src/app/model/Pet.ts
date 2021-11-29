@@ -2,14 +2,14 @@ import {Kind} from "./Kind";
 
 export class Pet {
 
-  id : bigint;
+  id : number;
   name : string;
   kind : Kind;
   profileText : string;
   image : string;
-  popularity : bigint;
+  popularity : number;
 
-  constructor(id : bigint, name : string, kind : Kind, profileText : string, image : string, popularity : bigint) {
+  constructor(id : number, name : string, kind : Kind, profileText : string, image : string, popularity : number) {
   this.id = id,
   this.name = name,
   this.kind = kind,
