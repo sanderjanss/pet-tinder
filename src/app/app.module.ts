@@ -8,7 +8,7 @@ import {RouterModule} from "@angular/router";
 import { ProfileGalleryComponent } from './profile-gallery/profile-gallery.component';
 import {HttpClientModule} from "@angular/common/http";
 import { NameFilterPipe } from './pipes/name-filter.pipe';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     LayoutModule,

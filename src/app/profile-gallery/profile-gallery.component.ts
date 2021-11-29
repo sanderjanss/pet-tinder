@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PetService} from "../service/pet.service";
 import {Pet} from "../model/Pet";
-import {identity} from "rxjs";
+import {FormBuilder} from "@angular/forms";
+
 
 @Component({
   selector: 'app-profile-gallery',
@@ -10,18 +11,26 @@ import {identity} from "rxjs";
 })
 export class ProfileGalleryComponent implements OnInit {
 
-  private petService : PetService;
   pets : Pet [];
   selectedPet : Pet |any;
   show : boolean = false;
   searchText : string;
 
-  constructor(petService : PetService) {
-    this.petService = petService;
+  checkoutForm = this.formBuilder.group({
+    name: '',
+    kind: '',
+    image: '',
+    profileText: '',
+    popularity: ''
+  })
+
+  constructor(private petService: PetService, private formBuilder: FormBuilder) {
     this.pets = [];
     this.selectedPet = undefined;
     this.searchText = '';
   }
+
+
 
   ngOnInit(): void {
     this.getPets();
@@ -38,6 +47,14 @@ export class ProfileGalleryComponent implements OnInit {
 
   showInfo(){
     this.show = true;
+  }
+
+  onSubmit(): void {
+    this.petService.addPet(this.checkoutForm.value).subscribe(data => {
+      console.log('message::::', data);
+      this.checkoutForm.reset();
+      this.getPets();
+    });
   }
 
 

@@ -23,7 +23,10 @@ export class PetService {
   get getPets() : Observable<any>{
     return this.http.get<Pet[]>(this.url).pipe(map(result => result.sort(function (a, b) {
       return ('' + a.name).localeCompare(b.name);
-    }))).pipe()
+    })));
   }
 
+  addPet(pet : Pet): Observable<Pet>{
+    return this.http.post<Pet>(this.url, pet);
+  }
 }
