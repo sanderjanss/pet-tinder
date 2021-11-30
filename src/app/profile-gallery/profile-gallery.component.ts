@@ -12,9 +12,9 @@ import {FormBuilder} from "@angular/forms";
 export class ProfileGalleryComponent implements OnInit {
 
   pets : Pet [];
-  selectedPet : Pet |any;
+  selectedPet : Pet | any;
   show : boolean = false;
-  searchText : string;
+  searchText : string = '';
 
   checkoutForm = this.formBuilder.group({
     name: '',
@@ -26,8 +26,8 @@ export class ProfileGalleryComponent implements OnInit {
 
   constructor(private petService: PetService, private formBuilder: FormBuilder) {
     this.pets = [];
-    this.selectedPet = undefined;
-    this.searchText = '';
+    // this.selectedPet = undefined;
+    // this.searchText = '';
   }
 
 
@@ -43,6 +43,14 @@ export class ProfileGalleryComponent implements OnInit {
   selectPet(pet: Pet): void{
     this.showInfo()
     this.selectedPet = pet;
+  }
+
+  deletePet(id: number): void {
+    this.petService.deletePet(id)
+      .subscribe(() => {
+        this.getPets();
+        this.selectedPet = undefined;
+      })
   }
 
   showInfo(){

@@ -29,4 +29,13 @@ export class PetService {
   addPet(pet : Pet): Observable<Pet>{
     return this.http.post<Pet>(this.url, pet);
   }
+
+  findByName(name: string): Observable<any> {
+    return this.http
+      .get(`${this.url}/${name}`);
+  }
+
+  deletePet(id: number): Observable<any>{
+    return this.http.delete(`${this.url}/${id}`)
+  }
 }
