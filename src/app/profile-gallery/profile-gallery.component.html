@@ -4,7 +4,7 @@
       <div class="gallery">
         <div class="gallery-pet fader" *ngFor="let pet of pets | nameFilter: searchText">
           <div (click)="selectPet(pet)">
-            <img class="profile-picture" [src]="'https://petindersanderjanss2.herokuapp.com'+ pet.image">
+            <img class="profile-picture" [src]="'https://petindersanderjanss2.herokuapp.com/'+ pet.image">
             <div class="overlay">
               <div class="overlay-text">{{pet.name}}</div>
             </div>
